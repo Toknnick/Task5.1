@@ -20,16 +20,17 @@ namespace Task5._1
 
                 if (word == "search")
                 {
-                    Console.WriteLine("Введите индекс искомого слова:");
-                    int index = int.Parse(Console.ReadLine()) - 1;
-
-                    if (index > number || index < 0)
+                    Console.WriteLine("Введите ключ искомого слова:");
+                    int keyOfDictionary = int.Parse(Console.ReadLine()) - 1;
+                    bool contains = dictionaryOfWords.ContainsKey(keyOfDictionary);
+                    
+                    if (contains == false)
                     {
                         Console.WriteLine("Искомого слова нет.");
                     }
                     else
                     {
-                        Console.WriteLine("Слово: " + dictionaryOfWords[index]);
+                        Console.WriteLine("Слово: " + dictionaryOfWords[keyOfDictionary]);
                     }
                 }
 
