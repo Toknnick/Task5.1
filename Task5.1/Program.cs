@@ -22,22 +22,21 @@ namespace Task5._1
                 {
                     Console.WriteLine("Введите ключ искомого слова:");
                     int keyOfDictionary = int.Parse(Console.ReadLine()) - 1;
-                    bool contains = dictionaryOfWords.ContainsKey(keyOfDictionary);
-                    
-                    if (contains == false)
-                    {
+
+                    if (!dictionaryOfWords.ContainsKey(keyOfDictionary))
                         Console.WriteLine("Искомого слова нет.");
-                    }
                     else
-                    {
                         Console.WriteLine("Слово: " + dictionaryOfWords[keyOfDictionary]);
-                    }
                 }
 
                 if (word == "exit")
                     isWork = false;
 
-                dictionaryOfWords.Add(number, word);
+                if (!dictionaryOfWords.ContainsValue(word))
+                    dictionaryOfWords.Add(number, word);
+                else
+                    Console.WriteLine("Такое слово уже есть");
+
                 number += 1;
             }
         }
