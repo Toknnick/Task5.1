@@ -1,63 +1,45 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 
 namespace Task5._1
 {
     internal class Program
     {
-        static string word = "";
-        static bool isWork = true;
-        static List<string> listOfStrings = new List<string>();
-        static int index = 0;
 
         static void Main(string[] args)
         {
-            Console.WriteLine("exit для выхода.\nЧобы найти слово по индексу введите search the word\n");
-            WorkBeforeExit();
-        }
+            bool isWork = true;
+            Dictionary<int, string> dictionaryOfWords = new Dictionary<int, string>();
+            Console.WriteLine("exit для выхода.\nЧобы найти слово по индексу введите search. \n");
+            int number = 0;
 
-        static void WorkBeforeExit()
-        {
             while (isWork)
             {
-                GetWord();
-                SearchTheWord();
-                Exit();
-                AddWord();
+                Console.WriteLine("Введите слово:");
+                string word = Console.ReadLine().ToLower().Trim();
+
+                if (word == "search")
+                {
+                    Console.WriteLine("Введите индекс искомого слова:");
+                    int index = int.Parse(Console.ReadLine()) - 1;
+
+                    if (index > number || index < 0)
+                    {
+                        Console.WriteLine("Искомого слова нет.");
+                    }
+                    else
+                    {
+                        Console.WriteLine("Слово: " + dictionaryOfWords[index]);
+                    }
+                }
+
+                if (word == "exit")
+                    isWork = false;
+
+                dictionaryOfWords.Add(number, word);
+                number += 1;
             }
-        }
-
-        static string GetWord()
-        {
-            Console.WriteLine("Введите слово:");
-            word = Console.ReadLine().ToLower().Trim();
-            return word;
-        }
-
-        static void SearchTheWord()
-        {
-            if (word == "search the word")
-            {
-                Console.WriteLine("Введите индекс:");
-                index = int.Parse(Console.ReadLine()) - 1;
-
-                if (index > listOfStrings.Count || index < 0)
-                    Console.WriteLine("Искомого слова нет.");
-                else
-                    Console.WriteLine(listOfStrings[index]);
-            }
-        }
-
-        static void AddWord()
-        {
-            listOfStrings.Add(word);
-        }
-
-        static bool Exit()
-        {
-            if (word == "exit")
-                isWork = false;
-            return isWork;
         }
     }
 }
+
