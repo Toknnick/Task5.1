@@ -5,7 +5,6 @@ namespace Task5._1
 {
     internal class Program
     {
-
         static void Main(string[] args)
         {
             bool isWork = true;
@@ -22,20 +21,21 @@ namespace Task5._1
                 {
                     Console.WriteLine("Введите ключ искомого слова:");
                     int keyOfDictionary = int.Parse(Console.ReadLine()) - 1;
+                    bool containsKey = dictionaryOfWords.ContainsKey(keyOfDictionary);
 
-                    if (!dictionaryOfWords.ContainsKey(keyOfDictionary))
-                        Console.WriteLine("Искомого слова нет.");
-                    else
+                    if (containsKey)
                         Console.WriteLine("Слово: " + dictionaryOfWords[keyOfDictionary]);
+                    else
+                        Console.WriteLine("Искомого слова нет.");
                 }
 
-                if (word == "exit")
+                else if (word == "exit")
                     isWork = false;
 
-                if (!dictionaryOfWords.ContainsValue(word))
-                    dictionaryOfWords.Add(number, word);
-                else
+                else if (dictionaryOfWords.ContainsValue(word))
                     Console.WriteLine("Такое слово уже есть");
+                else
+                    dictionaryOfWords.Add(number, word);
 
                 number += 1;
             }
