@@ -1,45 +1,31 @@
-using System;
+uusing System;
 using System.Collections.Generic;
 
 namespace Task5._1
 {
     internal class Program
     {
+
         static void Main(string[] args)
         {
-            bool isWork = true;
-            Dictionary<int, string> dictionaryOfWords = new Dictionary<int, string>();
-            Console.WriteLine("exit для выхода.\nЧобы найти слово по индексу введите search. \n");
-            int number = 0;
+            Dictionary<string, string> countries = new Dictionary<string, string>();
+            countries.Add("Россия", "Столица - Москва");
+            countries.Add("США", "Столица - Вашингтон");
+            countries.Add("Китай", "Столица - Пекин");
+            countries.Add("Япония", "Столица - Токио");
+            countries.Add("Канада", "Столица - Отта́ва ");
 
-            while (isWork)
+            Console.WriteLine("Введите названи страны:");
+            string word = Console.ReadLine().Trim();
+
+            if (countries.ContainsKey(word))
             {
-                Console.WriteLine("Введите слово:");
-                string word = Console.ReadLine().ToLower().Trim();
-
-                if (word == "search")
-                {
-                    Console.WriteLine("Введите ключ искомого слова:");
-                    int keyOfDictionary = int.Parse(Console.ReadLine()) - 1;
-                    bool containsKey = dictionaryOfWords.ContainsKey(keyOfDictionary);
-
-                    if (containsKey)
-                        Console.WriteLine("Слово: " + dictionaryOfWords[keyOfDictionary]);
-                    else
-                        Console.WriteLine("Искомого слова нет.");
-                }
-
-                else if (word == "exit")
-                    isWork = false;
-
-                else if (dictionaryOfWords.ContainsValue(word))
-                    Console.WriteLine("Такое слово уже есть");
-                else
-                    dictionaryOfWords.Add(number, word);
-
-                number += 1;
+                Console.WriteLine(countries[word]);
+            }
+            else
+            {
+                Console.WriteLine("Такого слова нет!");
             }
         }
     }
 }
-
